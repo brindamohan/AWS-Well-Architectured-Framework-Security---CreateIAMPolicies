@@ -1,0 +1,25 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ec2existingtagscreate",
+            "Effect": "Allow",
+            "Action": "ec2:CreateTags",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:ResourceTag/Team": "Beta"
+                },
+                "ForAllValues:StringEquals": {
+                    "aws:TagKeys": [
+                        "Team",
+                        "Name"
+                    ]
+                },
+                "StringEqualsIfExists": {
+                    "aws:RequestTag/Team": "Beta"
+                }
+            }
+        }
+    ]
+}
